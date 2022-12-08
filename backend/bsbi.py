@@ -57,10 +57,9 @@ class BSBIIndex:
     index_name(str): Nama dari file yang berisi inverted index
     """
 
-    def __init__(self, data_dir, output_dir, postings_encoding, index_name="main_index"):
+    def __init__(self, output_dir, postings_encoding, index_name="main_index"):
         self.term_id_map = IdMap()
         self.doc_id_map = IdMap()
-        self.data_dir = data_dir
         self.output_dir = output_dir
         self.index_name = index_name
         self.postings_encoding = postings_encoding
