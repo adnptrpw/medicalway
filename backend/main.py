@@ -8,9 +8,10 @@ from compression import VBEPostings
 storage_client = storage.Client()
 bucket = storage_client.bucket("medicalway-be")
 
+
 def search(request):
     query = request.args.get("query")
-    if query == None:
+    if query is None:
         return "You need to enter a search query to proceed.", 400
 
     BSBI = BSBIIndex(postings_encoding=VBEPostings, output_dir='index')

@@ -37,7 +37,6 @@ class IdMap:
         Jika s tidak ada pada IdMap, lalu assign sebuah integer id baru dan kembalikan
         integer id baru tersebut.
         """
-        # TODO
         if s in self.str_to_id:
             return self.str_to_id[s]
         self.str_to_id[s] = len(self.id_to_str)
@@ -64,78 +63,3 @@ class IdMap:
             return self.__get_id(key)
         else:
             raise TypeError
-
-
-def sorted_merge_posts_and_tfs(posts_tfs1, posts_tfs2):
-    """
-    Menggabung (merge) dua lists of tuples (doc id, tf) dan mengembalikan
-    hasil penggabungan keduanya (TF perlu diakumulasikan untuk semua tuple
-    dengn doc id yang sama), dengan aturan berikut:
-
-    contoh: posts_tfs1 = [(1, 34), (3, 2), (4, 23)]
-            posts_tfs2 = [(1, 11), (2, 4), (4, 3 ), (6, 13)]
-
-            return   [(1, 34+11), (2, 4), (3, 2), (4, 23+3), (6, 13)]
-                   = [(1, 45), (2, 4), (3, 2), (4, 26), (6, 13)]
-
-    Parameters
-    ----------
-    list1: List[(Comparable, int)]
-    list2: List[(Comparable, int]
-        Dua buah sorted list of tuples yang akan di-merge.
-
-    Returns
-    -------
-    List[(Comparablem, int)]
-        Penggabungan yang sudah terurut
-    """
-    result = []
-    pos1 = 0
-    pos2 = 0
-    while pos1 < len(posts_tfs1) and pos2 < len(posts_tfs2):
-        if posts_tfs1[pos1][0] == posts_tfs2[pos2][0]:
-            result.append((posts_tfs1[pos1][0], posts_tfs1[pos1][1] + posts_tfs2[pos2][1]))
-            pos1 += 1
-            pos2 += 1
-        elif posts_tfs1[pos1][0] < posts_tfs2[pos2][0]:
-            result.append(posts_tfs1[pos1])
-            pos1 += 1
-        else:
-            result.append(posts_tfs2[pos2])
-            pos2 += 1
-
-    # Add later part that doesn't covered in while loop
-    while pos1 < len(posts_tfs1):
-        result.append(posts_tfs1[pos1])
-        pos1 += 1
-
-    while pos2 < len(posts_tfs2):
-        result.append(posts_tfs2[pos2])
-        pos2 += 1
-
-    return result
-
-
-def test(output, expected):
-    """ simple function for testing """
-    return "PASSED" if output == expected else "FAILED"
-
-
-if __name__ == '__main__':
-    doc = ["halo", "semua", "selamat", "pagi", "semua"]
-    term_id_map = IdMap()
-    assert [term_id_map[term] for term in doc] == [0, 1, 2, 3, 1], "term_id salah"
-    assert term_id_map[1] == "semua", "term_id salah"
-    assert term_id_map[0] == "halo", "term_id salah"
-    assert term_id_map["selamat"] == 2, "term_id salah"
-    assert term_id_map["pagi"] == 3, "term_id salah"
-
-    docs = ["/collection/0/data0.txt",
-            "/collection/0/data10.txt",
-            "/collection/1/data53.txt"]
-    doc_id_map = IdMap()
-    assert [doc_id_map[docname] for docname in docs] == [0, 1, 2], "docs_id salah"
-
-    assert sorted_merge_posts_and_tfs([(1, 34), (3, 2), (4, 23)], \
-                                      [(1, 11), (2, 4), (4, 3), (6, 13)]) == [(1, 45), (2, 4), (3, 2), (4, 26), (
-        6, 13)], "sorted_merge_posts_and_tfs salah"
