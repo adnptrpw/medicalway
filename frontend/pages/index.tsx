@@ -32,10 +32,9 @@ export default function Home() {
         </Box>
 
         <InputGroup width={1000}>
-          <InputLeftElement
-            pointerEvents="none"
-            children={<SearchIcon color="gray.300" />}
-          />
+          <InputLeftElement pointerEvents="none">
+            <SearchIcon color="gray.300" />
+          </InputLeftElement>
           <Input placeholder="Search" borderRadius={1000} />
         </InputGroup>
 
