@@ -14,7 +14,7 @@ def search(request):
     if query is None:
         return "You need to enter a search query to proceed.", 400
 
-    BSBI = BSBIIndex(postings_encoding=VBEPostings, output_dir='index')
+    BSBI = BSBIIndex(output_dir='index', postings_encoding=VBEPostings)
 
     start_time = time.time()
     rank = BSBI.retrieve_bm25(query, k=100, k1=2.75, b=0.75)
