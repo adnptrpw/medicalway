@@ -6,7 +6,7 @@ from bsbi import BSBIIndex
 from compression import VBEPostings
 
 storage_client = storage.Client()
-bucket = storage_client.bucket("medicalway-be")
+bucket = storage_client.bucket("medicalway-be/collection")
 
 
 def search(request):
@@ -25,7 +25,7 @@ def search(request):
 
     for (_, doc) in rank:
         serp_length += 1
-        with bucket.blob(doc.replace("\\", "/collection/")).open("r") as file:
+        with bucket.blob(doc.replace("\\", "/")).open("r") as file:
             serp.append(file.read())
 
     return {"duration": end_time - start_time, "serp length": serp_length, "serp": serp}, 200
