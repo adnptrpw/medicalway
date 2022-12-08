@@ -22,21 +22,26 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-          <Box mb={8}>
-            <img src="/logo-text.svg" alt="Medicalway"></img>
-          </Box>
+        <Box mb={8}>
+          <Image
+            src="/logo-text.svg"
+            alt="Medicalway"
+            width={419}
+            height={100}
+          />
+        </Box>
 
-          <InputGroup width={1000}>
-            <InputLeftElement
-              pointerEvents="none"
-              children={<SearchIcon color="gray.300" />}
-            />
-            <Input placeholder="Search" borderRadius={1000} />
-          </InputGroup>
+        <InputGroup width={1000}>
+          <InputLeftElement
+            pointerEvents="none"
+            children={<SearchIcon color="gray.300" />}
+          />
+          <Input placeholder="Search" borderRadius={1000} />
+        </InputGroup>
 
-          <Button colorScheme="blue" mt={4} borderRadius={1000} width={150}>
-            Search
-          </Button>
+        <Button colorScheme="blue" mt={4} borderRadius={1000} width={150}>
+          Search
+        </Button>
       </main>
     </div>
   );
