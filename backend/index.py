@@ -88,7 +88,7 @@ class InvertedIndex:
         https://docs.python.org/3/reference/datamodel.html#object.__enter__
         """
         # Membuka index file
-        self.index_file = bucket.blob(self.index_file_path).open('rb+')
+        self.index_file = bucket.blob(self.index_file_path).open('rb')
 
         # Kita muat postings dict dan terms iterator dari file metadata
         with bucket.blob(self.metadata_file_path).open('rb') as f:
