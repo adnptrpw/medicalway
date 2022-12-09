@@ -45,8 +45,9 @@ const Search: NextPage<{
         <title>Search | Medicalway</title>
         <meta name="description" content="Search" />
         <style>
+          {" "}
           @import
-          url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+          url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');{" "}
         </style>
         <link rel="icon" href="/logo.svg" />
       </Head>
@@ -88,7 +89,7 @@ const Search: NextPage<{
         <Divider mt={3} mb={2} />
 
         <Stack>
-          <Text mb={3} fontSize={'xs'}>
+          <Text mb={3} fontSize={"xs"}>
             About {props.serpData.length} results ({props.serpData.duration}{" "}
             seconds)
           </Text>
