@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
 
-module.exports = nextConfig
+module.exports = () => {
+  const env = {
+    API: "https://asia-southeast2-medicalway-ir.cloudfunctions.net/",
+  };
+
+  return env;
+};

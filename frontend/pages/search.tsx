@@ -14,7 +14,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-const Home = () => {
+const Search = () => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -24,7 +24,12 @@ const Home = () => {
 
   const searchFunction = async () => {
     if (searchQuery !== "") {
-      router.push({ pathname: "/search", query: { q: searchQuery} });
+      const response = await fetch(
+        `https://asia-southeast2-medicalway-ir.cloudfunctions.net/search?query=${searchQuery}`
+      );
+      const data = await response.json();
+      console.log(data);
+      router.push({ pathname: "/search", query: { q: searchQuery, d: data } });
     }
   };
 
@@ -73,4 +78,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Search;
