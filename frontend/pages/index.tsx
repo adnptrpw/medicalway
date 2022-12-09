@@ -33,6 +33,10 @@ const Home = () => {
       <Head>
         <title>Medicalway</title>
         <meta name="description" content="Home" />
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+        </style>
         <link rel="icon" href="/logo.svg" />
       </Head>
 

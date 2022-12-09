@@ -6,18 +6,20 @@ import styles from "../../styles/Home.module.css";
 
 import {
   Button,
+  Box,
   Divider,
   Flex,
   Input,
   InputGroup,
   InputLeftElement,
   Stack,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
 import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { BaseNextResponse } from "next/dist/server/base-http";
 
 const Search: NextPage<{
   querySearch: any;
@@ -42,6 +44,10 @@ const Search: NextPage<{
       <Head>
         <title>Search | Medicalway</title>
         <meta name="description" content="Search" />
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+        </style>
         <link rel="icon" href="/logo.svg" />
       </Head>
 
@@ -82,14 +88,19 @@ const Search: NextPage<{
         <Divider mt={3} mb={2} />
 
         <Stack>
-          <Text mb={3}>About {props.serpData.length} results ({props.serpData.duration} seconds)</Text>
+          <Text mb={3} fontSize={'xs'}>
+            About {props.serpData.length} results ({props.serpData.duration}{" "}
+            seconds)
+          </Text>
 
-          {Object.keys(props.serpData.serp).map((key) => {
+          {Object.keys(props.serpData.serp).map((name, id) => {
             return (
-              <Stack>
-                <Text>{key}</Text>
-                <Text>{props.serpData.serp[key]}</Text>
-              </Stack>
+              <Box key={id}>
+                <Text fontSize={"xl"} fontWeight={"bold"}>
+                  {name}
+                </Text>
+                <Text mb={6}>{props.serpData.serp[name]}</Text>
+              </Box>
             );
           })}
         </Stack>
@@ -102,19 +113,25 @@ export const getServerSideProps: GetServerSideProps = async ({
   params,
   res,
 }) => {
-  try {
-    const result = await fetch(process.env.API + `search?query=${params}`);
-    const data = await result.json();
+  let query = null;
+  let serp = null;
 
-    return {
-      props: { querySearch: params, serpData: data },
-    };
-  } catch {
-    res.statusCode = 404;
-    return {
-      props: {},
-    };
+  if (params) {
+    try {
+      const result = await fetch(
+        process.env.API + `search?query=${params.query}`
+      );
+      const data = await result.json();
+
+      query = params;
+      serp = data;
+    } catch {
+      res.statusCode = 404;
+    }
   }
+  return {
+    props: { querySearch: query, serpData: serp },
+  };
 };
 
 export default Search;

@@ -1,5 +1,6 @@
 .container {
   padding: 0 2rem;
+  font-family: 'Inter', sans-serif;
 }
 
 .main {
@@ -10,6 +11,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Inter', sans-serif;
 }
 
 .search {
