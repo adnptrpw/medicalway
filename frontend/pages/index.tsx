@@ -36,7 +36,7 @@ const Home = () => {
         <style>
           {" "}
           @import
-          url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');{" "}
+          url(&apos;https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap&apos;);{" "}
         </style>
         <link rel="icon" href="/logo.svg" />
       </Head>
