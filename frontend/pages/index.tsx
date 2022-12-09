@@ -24,7 +24,7 @@ const Home = () => {
 
   const searchFunction = async () => {
     if (searchQuery !== "") {
-      router.push({ pathname: "/search", query: { q: searchQuery} });
+      router.push({ pathname: `/search/${searchQuery}` });
     }
   };
 

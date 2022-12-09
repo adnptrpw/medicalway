@@ -28,4 +28,4 @@ def search(request):
         with bucket.blob(doc.replace("\\", "/")).open("r") as file:
             serp[doc.replace("\\", "/")] = file.read()
 
-    return {"duration": end_time - start_time, "serp length": serp_length, "serp": serp}, 200
+    return {"duration": end_time - start_time, "length": serp_length, "serp": serp}, 200
