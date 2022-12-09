@@ -95,8 +95,6 @@ class InvertedIndex:
             self.postings_dict, self.terms, self.doc_length, self.avg_doc_length = pickle.load(f)
             self.term_iter = self.terms.__iter__()
 
-        self.avg_doc_length = sum(self.doc_length.values()) / len(self.doc_length)
-
         return self
 
     def __exit__(self, exception_type, exception_value, traceback):

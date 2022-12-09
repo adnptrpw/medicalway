@@ -60,9 +60,12 @@ class BSBIIndex:
     def __init__(self, output_dir, postings_encoding, index_name="main_index"):
         self.term_id_map = IdMap()
         self.doc_id_map = IdMap()
+        self.doc_length = dict()
+        self.average_doc_length = -1
         self.output_dir = output_dir
         self.index_name = index_name
         self.postings_encoding = postings_encoding
+        self.loaded = False
 
         # Untuk menyimpan nama-nama file dari semua intermediate inverted index
         self.intermediate_indices = []

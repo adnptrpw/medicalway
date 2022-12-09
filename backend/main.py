@@ -6,7 +6,7 @@ from bsbi import BSBIIndex
 from compression import VBEPostings
 
 storage_client = storage.Client()
-bucket = storage_client.bucket("medicalway-be/collection")
+bucket = storage_client.bucket("medicalway-be")
 
 
 def search(request):
